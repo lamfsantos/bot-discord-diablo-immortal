@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-discord-py-interactions = "*"
 nextcord = "*"
+apscheduler = "*"
 
 [dev-packages]
 
