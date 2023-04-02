@@ -4,8 +4,8 @@ from nextcord.ext import commands
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import asyncio
 
-GUILD_ID = 1089708881363599530  # Replace with your guild ID
-TOKEN = "MTA4OTY3MzcwNzk5MzE5MDUyMg.GiUMqL.pyomkUoe8HYUDjltYeDOH6QjyX_gAyHUJ2aUWc" # Put your bot token here
+GUILD_ID = 123456789  # Replace with your guild ID
+TOKEN = "token here" # Put your bot token here
 
 bot = commands.Bot()
 
