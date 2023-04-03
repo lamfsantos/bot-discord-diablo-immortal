@@ -4,8 +4,10 @@ from nextcord.ext import commands
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import asyncio
 
+from db import repository 
+
 GUILD_ID = 123456789  # Replace with your guild ID
-TOKEN = "token here" # Put your bot token here
+TOKEN = "TOKEN" # Put your bot token here
 
 bot = commands.Bot()
 
@@ -15,8 +17,8 @@ async def on_ready():
 
 	channel = bot.get_channel(GUILD_ID)
 
-	#await channel.send("Mensagem")
-	#await notify_event(channel);
+	print(repository.find_events_by_time_and_day_of_the_week('19:00:00', 'Tuesday'))
+
 	await teste()
 
 async def teste():
@@ -31,15 +33,11 @@ async def notify_event(channel):
 	if time_now.hour + 3 == 18:
 		await channel.send("Evento")
 
-# @bot.slash_command(description="My first slash command", guild_ids=[TESTING_GUILD_ID])
-# async def hello(interaction: nextcord.Interaction):
-#     await interaction.send("Teste")
-
 scheduler = AsyncIOScheduler()
 scheduler.add_job(teste, 'interval', minutes=1)
 scheduler.start()
 
 if __name__ == '__main__':
-    bot.run(TOKEN)
+	bot.run(TOKEN)
 
-    asyncio.get_event_loop().run_forever()
+	asyncio.get_event_loop().run_forever()
