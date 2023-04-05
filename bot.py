@@ -5,11 +5,18 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import asyncio
 import pytz
 from datetime import datetime, timedelta
+from db import repository
 
-from db import repository 
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 
-GUILD_ID = 123456789  # Replace with your guild ID
-TOKEN = "token" # Put your bot token here
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+#Create a .env file on the project root with this two variables below
+GUILD_ID = os.environ.get("GUILD_ID")  
+TOKEN = os.environ.get("TOKEN")
 TIMEZONE = "America/Sao_Paulo"
 
 bot = commands.Bot()
