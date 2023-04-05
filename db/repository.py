@@ -23,3 +23,15 @@ def find_events_by_time_and_day_of_the_week(time, day):
     conn.close()
 
     return rows
+
+def find_event_by_id(id):
+    conn = create_connection(database)
+
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT events.description FROM events where id = ?;", (id, ))
+
+    rows = cur.fetchall()
+
+    conn.close()
+
+    return rows
