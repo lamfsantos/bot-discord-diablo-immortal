@@ -15,7 +15,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 #Create a .env file on the project root with this two variables below
-GUILD_ID = os.environ.get("GUILD_ID")  
+GUILD_ID = int(os.environ.get("GUILD_ID"))
 TOKEN = os.environ.get("TOKEN")
 TIMEZONE = "America/Sao_Paulo"
 
@@ -30,7 +30,7 @@ async def on_ready():
 	await check_upcoming_event()
 
 async def check_upcoming_event():
-	channel = bot.get_channel(GUILD_ID)
+	channel = bot.get_channel(GUILD_ID)	
 	event_time = get_current_time_str()
 
 	events = repository.find_events_by_time_and_day_of_the_week(event_time, get_current_day_of_the_week());
