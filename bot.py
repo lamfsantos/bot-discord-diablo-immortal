@@ -39,9 +39,6 @@ async def check_upcoming_event():
 		print(event_time)
 		print(get_current_day_of_the_week())
 		await send_messages(channel, events)
-	if get_current_time_by_timezone().strftime("%M") == '00':
-		print(get_current_time_by_timezone())
-		await send_hades_message(channel)
 
 async def send_messages(channel, events):
 	for event in events:
@@ -49,12 +46,6 @@ async def send_messages(channel, events):
 		print(message)
 		print()
 		await channel.send(message)
-
-async def send_hades_message(channel):
-	hades_event = repository.find_event_by_id(13)[0][0]
-	print(hades_event)
-	print()
-	await channel.send(hades_event)
 
 def get_current_time_str():
 	current_time = get_current_time_by_timezone()

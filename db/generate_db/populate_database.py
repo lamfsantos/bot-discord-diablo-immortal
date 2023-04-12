@@ -27,8 +27,7 @@ def create_events(conn):
             ('Torre da Vitória'),
             ('Assembleia das Sombras'),
             ('Rito do Exílio'),
-            ('Arena Ancestral'),
-            ('Já fez seus 70 bestiários hoje? Hades está de olho.')
+            ('Arena Ancestral')
         ;
     '''
     cur = conn.cursor()
