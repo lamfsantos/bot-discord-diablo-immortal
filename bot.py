@@ -58,12 +58,12 @@ def get_current_time_by_timezone():
 	current_time = current_time.replace(second = 0)
 
 	return current_time
-	
+
 def add_ten_minutes_to_datetime(time):
 	return time + timedelta(minutes=10)
 
 def get_current_day_of_the_week():
-	today = datetime.today()
+	today = get_current_time_by_timezone()
 	day_of_week = today.strftime("%A")
 
 	return day_of_week
