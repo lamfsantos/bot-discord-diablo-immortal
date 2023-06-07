@@ -17,6 +17,7 @@ load_dotenv(dotenv_path)
 #Create a .env file on the project root with this two variables below
 GUILD_ID = int(os.environ.get("GUILD_ID"))
 TOKEN = os.environ.get("TOKEN")
+
 TIMEZONE = "America/Sao_Paulo"
 
 bot = commands.Bot()
@@ -31,12 +32,13 @@ async def on_ready():
 
 async def check_upcoming_event():
 	channel = bot.get_channel(GUILD_ID)	
-	event_time = get_current_time_str()
+	current_time = get_current_time_by_timezone();
+	event_time = parse_time_to_string(add_ten_minutes_to_datetime(current_time))
 
 	events = repository.find_events_by_time_and_day_of_the_week(event_time, get_current_day_of_the_week());
 
 	if events != []:
-		print(event_time)
+		print(current_time)
 		print(get_current_day_of_the_week())
 		await send_messages(channel, events)
 
@@ -47,10 +49,8 @@ async def send_messages(channel, events):
 		print()
 		await channel.send(message)
 
-def get_current_time_str():
-	current_time = get_current_time_by_timezone()
-	current_time = add_ten_minutes_to_datetime(current_time)
-	return current_time.strftime("%H:%M:%S")
+def parse_time_to_string(time):
+	return time.strftime("%H:%M:%S")
 
 def get_current_time_by_timezone():
 	timezone = pytz.timezone(TIMEZONE)
